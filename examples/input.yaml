@@ -1,0 +1,14 @@
+# Order N of the system of equations
+order: 4
+# Operation code (use 1, 2, 3 or 4)
+icod: 1
+# Enables determinant computation (use: 0 or 1) 
+idet: 0
+# Vector b
+b: [1,2,3,4,5]
+# Matrix A
+a: [
+  
+]
+# Max tolerance for iterative methods
+tolm: 0.001
