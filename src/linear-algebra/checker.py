@@ -28,3 +28,13 @@ def is_simetric_positive_defined(A):
                 return False
 
     return True
+
+def is_simetric(matrix):
+    n = matrix.shape[0]
+    
+    for i in range(n):
+        for j in range(n):
+            if matrix[i,j] != matrix[j,i]:
+                return False
+ 
+    return True
