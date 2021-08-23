@@ -1,6 +1,8 @@
 import numpy as np
 
-
+# Input matrix is replaced with LU matrix
+# Output is the replaced A matrix with a 
+# permutation matrix represented as position vector
 def lu_decompose(A):
     n = A.shape[0]
     pivot_row = 0
@@ -11,14 +13,15 @@ def lu_decompose(A):
 
     for k in range(n):
         # Find best pivot
-        pivot = 0.0
+        pivot_abs = 0.0
         for i in range(k, n):
-            if (A[i, k] > abs(pivot)):
-                pivot = A[i, k]
+            current_abs = abs(A[i, k])
+            if (current_abs > pivot_abs):
+                pivot_abs = current_abs
                 pivot_row = i
 
         # Swap rows if necessary
-        if (pivot_row != k):
+        if (k != pivot_row):
             temp = P[k]
             P[k] = P[pivot_row]
             P[pivot_row] = temp
@@ -36,80 +39,36 @@ def lu_decompose(A):
 
     return A, P
 
-
-def back_substitute(U, b):
-    n = U.shape[0]
+def solve(A, b):
+    n = A.shape[0]
     x = np.zeros(n)
 
+    (A, P) = lu_decompose(A)
+
+    # Performs permutation on B vector and
+    # foward substitution
+    for i in range(n):
+        x[i] = b[P[i]]
+        for k in range(i):
+            x[i] -= A[i,k] * x[k]
+        x[i] /= A[i, i]
+
+    # Performs backwards substitution
     for i in range(n-1, -1, -1):
-        sum = b[i]
-        for j in range(i+1, n):
-            sum -= U[i, j] * x[j]
-
-        x[i] = sum / U[i, i]
-
-    return x
-
-
-def forward_substitute(L, b):
-    n = L.shape[0]
-    x = np.zeros(n)
-    for i in range(n):
-        temp = b[i]
-        for j in range(i-1):
-            temp -= L[i, j] * x[j]
-        x[i] = temp / L[i, i]
-    return x
-
-
-def apply_swap_vec(P, B):
-    n = B.shape[0]
-    for i in range(n):
-        i_pos = P[i]
-        if (i != i_pos):
-            # print('i, i_pos: ', i, i_pos)
-            # print('p: ', P)
-            # print('b: ', b)
-
-            temp = B[i]
-            B[i] = B[i_pos]
-            B[i_pos] = temp
-
-            temp = P[i]
-            P[i] = P[i_pos]
-            P[i_pos] = temp
-
-            # print('i, i_pos: ', i, i_pos)
-            # print('p: ', P)
-            # print('b: ', b)
-
-
-def solve(A, B):
-    # Ax=b -> LUx=b -> Ly=b -> Ux=y
-    LU, P = lu_decompose(A)
-    apply_swap_vec(P, B)
-
-    L = np.copy(LU)
-    for i in range(L.shape[0]):
-        L[i, i] = 1
-
-    print(B)
-    print(L)
-    print(LU)
-    y = forward_substitute(L, B)
-    print(y)
-
-    x = back_substitute(LU, y)
+        for k in range(i+1,n):
+            x[i] -= A[i,k] * x[k]
+        
+        x[i] /= A[i,i]
 
     return x
-
 
 A = np.array([
     [0.0, 1, 1],
     [1, 2, 1],
     [1, 1, -1]
 ])
-
 B = np.array([4, 7, 3.0])
+ans = np.array([-1.,  4., 0.])
 
 print(solve(A, B))
+print(ans)
