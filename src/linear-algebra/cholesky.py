@@ -1,11 +1,12 @@
 import numpy as np
 import math
+import checker
 
 def cholesky(A, tol):
     n = A.shape[0]
     L = np.zeros((n, n))
 
-    if (not is_simetric_positive_defined(A)):
+    if (not checker.is_simetric_positive_defined(A)):
         raise Exception("Matrix is not simetric positive defined")
 
     for i in range(n):
@@ -28,17 +29,12 @@ def solve(A, b):
     L = cholesky(A, 0.0)
     Lt = np.transpose(L)
 
-    print('L', L)
-
     # Performs forward substitution
     for i in range(n):
         x[i] = b[i]
         for k in range(i):
-            print(x)
             x[i] -= L[i, k] * x[k]
         x[i] /= L[i, i]
-
-    print('y',x)
 
     # Performs backwards substitution
     for i in range(n-1, -1, -1):
