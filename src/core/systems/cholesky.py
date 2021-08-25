@@ -22,7 +22,14 @@ def cholesky(A):
 
     return L
 
-def solve(A, B):
+def computeDeterminant(L):
+    n = L.shape[0]
+    det = 1
+    for i in range(n):
+        det *= pow(L[i,i], 2)
+    return det
+
+def solve(A, B, enableDet):
     n = A.shape[0]
     x = np.zeros(n)
 
@@ -41,5 +48,10 @@ def solve(A, B):
         for k in range(i+1, n):
             x[i] -= L[k, i] * x[k]
         x[i] /= L[i, i]
+
+
+    if (enableDet):
+        return x, computeDeterminant(L)
+
 
     return x

@@ -11,6 +11,9 @@ def lu_decompose(A):
     # the row swap tracker
     P = np.arange(0, n)
 
+    # Permutation count
+    P_count = 0
+
     for k in range(n):
         # Find best pivot
         pivot_abs = 0.0
@@ -22,6 +25,7 @@ def lu_decompose(A):
 
         # Swap rows if necessary
         if (k != pivot_row):
+            P_count += 1
             temp = P[k]
             P[k] = P[pivot_row]
             P[pivot_row] = temp
@@ -39,11 +43,23 @@ def lu_decompose(A):
 
     return A, P
 
-def solve(A, B):
+def computeDeterminant(A, P_count):
+    n = A.shape[0]
+    det = A[0,0]
+
+    for i in range(n):
+        det *= A[i,i]
+
+    if (P_count % 2 != 0):
+        return -det
+
+    return det
+
+def solve(A, B, enableDet):
     n = A.shape[0]
     x = np.zeros(n)
 
-    (A, P) = lu_decompose(A)
+    (A, P, P_count) = lu_decompose(A)
 
     # Performs permutation on B vector and
     # foward substitution
@@ -59,5 +75,8 @@ def solve(A, B):
             x[i] -= A[i,k] * x[k]
         
         x[i] /= A[i,i]
+
+    if enableDet:
+        return x, computeDeterminant(A, P_count)
 
     return x
