@@ -2,7 +2,7 @@ import numpy as np
 import math
 from .. import checker
 
-def cholesky(A, tol):
+def cholesky(A):
     n = A.shape[0]
     L = np.zeros((n, n))
 
@@ -22,36 +22,24 @@ def cholesky(A, tol):
 
     return L
 
-def solve(A, b):
+def solve(A, B):
     n = A.shape[0]
     x = np.zeros(n)
 
-    L = cholesky(A, 0.0)
-    Lt = np.transpose(L)
+    L = cholesky(A)
 
     # Performs forward substitution
     for i in range(n):
-        x[i] = b[i]
+        x[i] = B[i]
         for k in range(i):
             x[i] -= L[i, k] * x[k]
         x[i] /= L[i, i]
 
     # Performs backwards substitution
+    # with transposed L
     for i in range(n-1, -1, -1):
         for k in range(i+1, n):
-            x[i] -= Lt[i, k] * x[k]
-        x[i] /= Lt[i, i]
+            x[i] -= L[k, i] * x[k]
+        x[i] /= L[i, i]
 
     return x
-
-
-A = np.array([
-    [1, 0.2, 0.4],
-    [0.2, 1, 0.5],
-    [0.4, 0.5, 1]
-])
-B = np.array([0.6, -0.3, -0.6])
-ans = np.array([1,  0, -1.])
-
-print(solve(A, B))
-print(ans)
