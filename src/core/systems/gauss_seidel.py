@@ -7,7 +7,9 @@ def solve(A, B, rtol):
     X = np.ones(n)
 
     if (not checker.is_simetric_positive_defined(A) and not checker.is_diagonal_dominant(A)):
-        return -1
+        raise Exception(
+            "Matrix isn't simetric positive defined and diagonal dominant"
+        )
 
     while(residue > rtol):
         X_current = np.ones(n)

@@ -8,7 +8,7 @@ def solve(A, B, rtol):
 
     if (not checker.is_diagonal_dominant(A)):
         raise Exception(
-            "Jacobi method diverges, matrix is not diagonal dominant"
+            "Matrix is not diagonal dominant"
         )
 
     while(residue > rtol):
