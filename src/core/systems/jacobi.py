@@ -1,9 +1,9 @@
 import numpy as np
 from .. import checker
 
-def solve(A, B, rtol):
+def solve(A, B, tolm):
     n = A.shape[0]
-    residue = rtol + 1
+    residue = tolm + 1
     X = np.ones(n)
 
     if (not checker.is_diagonal_dominant(A)):
@@ -11,7 +11,7 @@ def solve(A, B, rtol):
             "Matrix is not diagonal dominant"
         )
 
-    while(residue > rtol):
+    while(residue > tolm):
         X_current = np.ones(n)
 
         for i in range(n):

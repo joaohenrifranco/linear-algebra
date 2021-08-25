@@ -2,16 +2,16 @@ import numpy as np
 import checker
 
 
-def eigen_jacobi(A, rtol=0.00000001):
+def eigen_jacobi(A, tolm=0.00000001):
     n = A.shape[0]
 
     if not checker.is_simetric(A):
         raise Exception("Matrix is not simetric")
 
     X = np.identity(n)
-    residue = rtol + 1
+    residue = tolm + 1
 
-    while(residue > rtol):
+    while(residue > tolm):
         # Finds greater absolute value position outside diagonal
         greatest_el = 0
         for i in range(n):

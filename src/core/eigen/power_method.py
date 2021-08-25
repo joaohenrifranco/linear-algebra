@@ -1,13 +1,13 @@
 import numpy as np
 
-def eigen_power_method(A, rtol):
+def eigen_power_method(A, tolm):
     n = A.shape[0]
     
     eigenvector = np.ones(n)
-    residue = rtol + 1
+    residue = tolm + 1
     prev_eigenvalue = 1
     
-    while(rtol < residue):   
+    while(tolm < residue):   
         Y = A @ eigenvector
         
         eigenvalue = Y[0]
