@@ -41,7 +41,7 @@ def lu_decompose(A):
             for j in range(k+1, n):
                 A[i, j] -= A[i, k] * A[k, j]   # Apply row subtration
 
-    return A, P
+    return A, P, P_count
 
 def computeDeterminant(A, P_count):
     n = A.shape[0]
@@ -79,4 +79,4 @@ def solve(A, B, enableDet):
     if enableDet:
         return x, computeDeterminant(A, P_count)
 
-    return x
+    return x, 0.0
