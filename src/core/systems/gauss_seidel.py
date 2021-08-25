@@ -8,7 +8,7 @@ def solve(A, B, tolm):
 
     if (not checker.is_simetric_positive_defined(A) and not checker.is_diagonal_dominant(A)):
         raise Exception(
-            "Matrix isn't simetric positive defined and diagonal dominant"
+            "Method diverges: matrix isn't simetric positive defined and diagonal dominant"
         )
 
     while(residue > tolm):
