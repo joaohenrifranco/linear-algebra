@@ -1,17 +1,21 @@
 import numpy as np
-import checker
+from .. import checker
 
 
-def eigen_jacobi(A, tolm=0.00000001):
+def run(A, tolm):
     n = A.shape[0]
 
+    iteration_count = 0
+
     if not checker.is_simetric(A):
-        raise Exception("Matrix is not simetric")
+        raise Exception("Method will diverge: matrix is not simetric")
 
     X = np.identity(n)
     residue = tolm + 1
 
     while(residue > tolm):
+        iteration_count += 1
+
         # Finds greater absolute value position outside diagonal
         greatest_el = 0
         for i in range(n):
@@ -49,4 +53,4 @@ def eigen_jacobi(A, tolm=0.00000001):
 
     eigenvectors = X
 
-    return eigenvectors, eigenvalues
+    return eigenvectors, eigenvalues, iteration_count

@@ -43,7 +43,7 @@ def lu_decompose(A):
 
     return A, P, P_count
 
-def computeDeterminant(A, P_count):
+def computeDeterminantLU(A, P_count):
     n = A.shape[0]
     det = A[0,0]
 
@@ -54,6 +54,14 @@ def computeDeterminant(A, P_count):
         return -det
 
     return det
+
+def computeDeterminant(A, copy):
+    LU = A
+    if copy:
+        LU = A.copy()
+        
+    (LU, _, P_count) = lu_decompose(LU)
+    return computeDeterminantLU(LU, P_count)
 
 def solve(A, B, enableDet):
     n = A.shape[0]
@@ -77,6 +85,6 @@ def solve(A, B, enableDet):
         x[i] /= A[i,i]
 
     if enableDet:
-        return x, computeDeterminant(A, P_count)
+        return x, computeDeterminantLU(A, P_count)
 
     return x, 0.0
