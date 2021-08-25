@@ -27,9 +27,11 @@ def run():
             output_dict["X"] = jacobi.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
         
-        elif icod == 3:
+        elif icod == 4:
             output_dict["X"] = gauss_seidel.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
+        else:
+            output_dict["error"] = 'Invalid ICOD'
     
     except Exception as exc:
         print(exc)
