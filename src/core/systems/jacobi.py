@@ -8,7 +8,7 @@ def solve(A, B, tolm):
 
     if (not checker.is_diagonal_dominant(A)):
         raise Exception(
-            "Matrix is not diagonal dominant"
+            "Method diverges: matrix is not diagonal dominant"
         )
 
     while(residue > tolm):
