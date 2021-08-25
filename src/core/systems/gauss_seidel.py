@@ -1,5 +1,5 @@
 import numpy as np
-import checker
+from .. import checker
 
 def solve(A, B, rtol):
     n = A.shape[0]
