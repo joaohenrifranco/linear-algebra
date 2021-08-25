@@ -39,7 +39,7 @@ def lu_decompose(A):
 
     return A, P
 
-def solve(A, b):
+def solve(A, B):
     n = A.shape[0]
     x = np.zeros(n)
 
@@ -48,7 +48,7 @@ def solve(A, b):
     # Performs permutation on B vector and
     # foward substitution
     for i in range(n):
-        x[i] = b[P[i]]
+        x[i] = B[P[i]]
         for k in range(i):
             x[i] -= A[i,k] * x[k]
         x[i] /= A[i, i]
@@ -62,13 +62,4 @@ def solve(A, b):
 
     return x
 
-A = np.array([
-    [0.0, 1, 1],
-    [1, 2, 1],
-    [1, 1, -1]
-])
-B = np.array([4, 7, 3.0])
 ans = np.array([-1.,  4., 0.])
-
-print(solve(A, B))
-print(ans)
