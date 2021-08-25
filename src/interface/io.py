@@ -35,6 +35,7 @@ class FileManager:
         self.output_file_path = output_file_path
 
     def parse_input(self):
+        dict = {}
         with open(self.input_file_path) as file:
             try:
                 dict = json.load(file)
