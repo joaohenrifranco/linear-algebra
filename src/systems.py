@@ -6,9 +6,11 @@ import core.systems.jacobi as jacobi
 import core.systems.gauss_seidel as gauss_seidel
 import core.systems.cholesky as cholesky
 
+
 def run():
-    fileManager = io.FileManager(input_file_path=sys.argv[1], output_file_path=sys.argv[2])
-    
+    fileManager = io.FileManager(
+        input_file_path=sys.argv[1], output_file_path=sys.argv[2])
+
     input_dict = fileManager.parse_input()
     icod = input_dict["icod"]
 
@@ -17,14 +19,21 @@ def run():
     try:
         if icod == 1:
             output_dict["X"] = lu.solve(input_dict["A"], input_dict["B"])
+        
         elif icod == 2:
-            cholesky.solve()
+            output_dict["X"] = cholesky.solve(input_dict["A"], input_dict["B"])
+        
         elif icod == 3:
-            jacobi.solve()
+            output_dict["X"] = jacobi.solve(
+                input_dict["A"], input_dict["B"], input_dict["tolm"])
+        
         elif icod == 3:
-            gauss_seidel.solve()
+            output_dict["X"] = gauss_seidel.solve(
+                input_dict["A"], input_dict["B"], input_dict["tolm"])
+    
     except Exception as exc:
-        output_dict["error"] = exc
+        print(exc)
+        output_dict["error"] = str(exc)
 
     fileManager.write_output(output_dict)
 
