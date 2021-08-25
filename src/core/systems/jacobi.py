@@ -2,7 +2,7 @@ import numpy as np
 import math
 import checker
 
-def solve_jacobi(A, B, rtol):
+def solve(A, B, rtol):
     n = A.shape[0]
     residue = rtol + 1
     X = np.ones(n)

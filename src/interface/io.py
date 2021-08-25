@@ -5,13 +5,8 @@ import json
 
 join = ''.join
 
-now_string = datetime.now().strftime("%H%M%S")
 
-input_filename = 'input.json'
-output_filename = f'output_{now_string}.json'
-current_dir_path = os.path.dirname(os.path.abspath(__file__))
-input_file_path = os.path.join(current_dir_path, input_filename)
-output_file_path = os.path.join(current_dir_path, output_filename)
+
 
 class NumpyDecoder(json.JSONEncoder):
     def default(self, obj):
@@ -26,28 +21,32 @@ class NumpyDecoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
+class FileManager:
+    def __init__(self, main_file):
+        self.created_time = datetime.now().strftime("%H%M%S")
 
-def parse_input_file():
-    with open(input_file_path) as file:
-        try:
-            dict = json.load(file)
-        except Exception as exc:
-            print(exc)
+        self.current_dir_path = os.path.dirname(os.path.abspath(main_file))
+        self.input_filename = 'input.json'
+        self.output_filename = f'output_{self.created_time}.json'
+        self.input_file_path = os.path.join(self.current_dir_path, self.input_filename)
+        self.output_file_path = os.path.join(self.current_dir_path, self.output_filename)
 
-    for key in dict:
-        if isinstance(dict[key], list):
-            dict[key] = np.array(dict[key])
+    def parse_input(self):
+        with open(self.input_file_path) as file:
+            try:
+                dict = json.load(file)
+            except Exception as exc:
+                print(exc)
 
-    return dict
+        for key in dict:
+            if isinstance(dict[key], list):
+                dict[key] = np.array(dict[key])
 
-def write_output_file(data_dict):
-    with open(output_file_path, 'w') as file:
-        try:
-            return json.dump(data_dict, file, cls=NumpyDecoder)
-        except Exception as exc:
-            print(exc)
+        return dict
 
-
-parse_input_file()
-write_output_file({'test': 123,  'array': np.array(
-    [[1.123123132, 2, 3.1231234123], [4, 5, 6], [7, 8, 9]]), 'asas': "ddd", 'aaa': 2})
+    def write_output(self, data_dict):
+        with open(self.output_file_path, 'w') as file:
+            try:
+                return json.dump(data_dict, file, cls=NumpyDecoder)
+            except Exception as exc:
+                print(exc)
