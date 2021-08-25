@@ -22,14 +22,17 @@ class NumpyDecoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, obj)
 
 class FileManager:
-    def __init__(self, main_file):
-        self.created_time = datetime.now().strftime("%H%M%S")
-
-        self.current_dir_path = os.path.dirname(os.path.abspath(main_file))
-        self.input_filename = 'input.json'
-        self.output_filename = f'output_{self.created_time}.json'
-        self.input_file_path = os.path.join(self.current_dir_path, self.input_filename)
-        self.output_file_path = os.path.join(self.current_dir_path, self.output_filename)
+    def __init__(self, input_file_path, output_file_path):
+        # Old method
+        # self.created_time = datetime.now().strftime("%H%M%S")
+        # self.current_dir_path = os.path.dirname(os.path.abspath(main_file))
+        # self.input_filename = 'input.json'
+        # self.output_filename = f'output_{self.created_time}.json'
+        # self.input_file_path = os.path.join(self.current_dir_path, self.input_filename)
+        # self.output_file_path = os.path.join(self.current_dir_path, self.output_filename)
+        
+        self.input_file_path = input_file_path
+        self.output_file_path = output_file_path
 
     def parse_input(self):
         with open(self.input_file_path) as file:
