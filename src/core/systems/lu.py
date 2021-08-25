@@ -61,5 +61,3 @@ def solve(A, B):
         x[i] /= A[i,i]
 
     return x
-
-ans = np.array([-1.,  4., 0.])
