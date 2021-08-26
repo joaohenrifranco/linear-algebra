@@ -16,15 +16,18 @@ def run():
 
     try:
         if icod == 1:
-            output_dict["y"] = regression.get_interpolated(input_dict["P"], input_dict["x"])
+            output_dict["y"] = regression.get_interpolated(
+                input_dict["P"], input_dict["x"])
 
         elif icod == 2:
-            output_dict["y"] = lagrange.get_interpolated(input_dict["P"], input_dict["x"])
+            output_dict["y"] = lagrange.get_interpolated(
+                input_dict["P"], input_dict["x"])
 
         else:
             output_dict["error"] = 'Invalid ICOD'
 
     except Exception as exc:
+        raise(exc)
         output_dict["error"] = str(exc)
 
     fileManager.write_output(output_dict)

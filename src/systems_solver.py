@@ -26,22 +26,24 @@ def run():
 
     try:
         if icod == 1:
-            output_dict["X"], output_dict["determinant"] = lu.solve(input_dict["A"], input_dict["B"], enableDet)
-        
+            output_dict["X"], output_dict["determinant"] = lu.solve(
+                input_dict["A"], input_dict["B"], enableDet)
+
         elif icod == 2:
-            output_dict["X"], output_dict["determinant"] = cholesky.solve(input_dict["A"], input_dict["B"], enableDet)
-        
+            output_dict["X"], output_dict["determinant"] = cholesky.solve(
+                input_dict["A"], input_dict["B"], enableDet)
+
         elif icod == 3:
             output_dict["X"] = jacobi.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
-        
+
         elif icod == 4:
             output_dict["X"] = gauss_seidel.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
-        
+
         else:
             output_dict["error"] = 'Invalid ICOD'
-    
+
     except Exception as exc:
         output_dict["error"] = str(exc)
 
@@ -49,5 +51,6 @@ def run():
         output_dict.pop('determinant', None)
 
     fileManager.write_output(output_dict)
+
 
 run()
