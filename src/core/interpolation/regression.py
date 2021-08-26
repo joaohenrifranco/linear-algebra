@@ -1,5 +1,5 @@
 import numpy as np
-import systems.gauss_seidel as gauss_seidel
+from ..systems import gauss_seidel
 
 
 def least_squares(P):
@@ -15,13 +15,13 @@ def least_squares(P):
     C[0] = sum(P[i, 1] for i in range(n))
     C[1] = sum(P[i, 0] * P[i, 1] for i in range(n))
 
-    B = gauss_seidel.run(A, C, 0.0001)
+    B = gauss_seidel.solve(A, C, 0.0001)
 
     return B
 
 
 def get_interpolated(P, x0):
     B = least_squares(P)
-    y0 = x0 * B[0] + B[1]
+    y0 = B[0] + x0 * B[1]
 
     return y0

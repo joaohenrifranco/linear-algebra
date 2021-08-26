@@ -8,8 +8,8 @@ def get_interpolated(P, x0):
         p = 1
         for j in range(n):
             if i != j:
-                p = p * (x0 - P[0,j])/(P[0,i] - P[0,j])
+                p = p * (x0 - P[j,0])/(P[i,0] - P[j,0])
         
-        y0 = y0 + p * P[1,i]    
+        y0 = y0 + p * P[i,1]    
 
     return y0
