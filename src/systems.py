@@ -43,7 +43,6 @@ def run():
             output_dict["error"] = 'Invalid ICOD'
     
     except Exception as exc:
-        print(exc)
         output_dict["error"] = str(exc)
 
     if (not enableDet):

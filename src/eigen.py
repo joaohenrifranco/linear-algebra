@@ -40,7 +40,6 @@ def run():
             output_dict["error"] = 'Invalid ICOD'
 
     except Exception as exc:
-        raise(exc)
         output_dict["error"] = str(exc)
 
     fileManager.write_output(output_dict)
