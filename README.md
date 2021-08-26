@@ -1,1 +1,1 @@
-# linear-algebra
+# Linear Algebra Utils
