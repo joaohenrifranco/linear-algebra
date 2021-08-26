@@ -6,12 +6,18 @@ def solve(A, B, tolm):
     residue = tolm + 1
     X = np.ones(n)
 
+    iteration_count = 0
+    residue_history = []
+
     if (not checker.is_diagonal_dominant(A)):
         raise Exception(
             "Method diverges: matrix is not diagonal dominant"
         )
 
     while(residue > tolm):
+        iteration_count += 1
+        residue_history.append(residue)
+
         X_current = np.ones(n)
 
         for i in range(n):
@@ -28,4 +34,4 @@ def solve(A, B, tolm):
             np.linalg.norm(X_current, ord=2)
         X = X_current
 
-    return X
+    return X, iteration_count, residue_history

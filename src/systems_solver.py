@@ -34,11 +34,11 @@ def run():
                 input_dict["A"], input_dict["B"], enableDet)
 
         elif icod == 3:
-            output_dict["X"] = jacobi.solve(
+            output_dict["X"], output_dict["iteration_count"], output_dict["residue_history"]  = jacobi.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
 
         elif icod == 4:
-            output_dict["X"] = gauss_seidel.solve(
+            output_dict["X"], output_dict["iteration_count"], output_dict["residue_history"] = gauss_seidel.solve(
                 input_dict["A"], input_dict["B"], input_dict["tolm"])
 
         else:
