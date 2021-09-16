@@ -1,1 +1,1 @@
-__all__ = ["eigen", "systems", "non_linear_sys", "interpolation"]
+__all__ = ["eigen", "systems", "non_linear", "interpolation"]
