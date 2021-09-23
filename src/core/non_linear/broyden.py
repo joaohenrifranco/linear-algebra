@@ -21,4 +21,4 @@ def solve(X0, teta, max_iter, tolm):
 
         X0 = X
 
-    raise Exception('Did not converge')
+    raise Exception('Conversion wasn`t reached')

@@ -14,4 +14,4 @@ def solve(X0, teta, max_iter, tolm):
         if tolk <= tolm:
             return X0
     
-    raise Exception('Did not converge')
+    raise Exception('Conversion wasn`t reached')
