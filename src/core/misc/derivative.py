@@ -1,8 +1,8 @@
 from common import f
 
 
-def solve(a, dX, c, method='foward'):
-    if method == 'foward':
+def solve(a, dX, c, method='forward'):
+    if method == 'forward':
         return (f(a + dX, c) - f(a, c))/dX
 
     elif method == 'backward':
@@ -13,4 +13,4 @@ def solve(a, dX, c, method='foward'):
 
     else:
         raise Exception(
-            "Invalid method name. Choose foward, backward or central.")
+            "Invalid method name. Choose forward, backward or central.")

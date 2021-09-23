@@ -70,7 +70,7 @@ def solve(A, B, enableDet):
     (A, P, P_count) = lu_decompose(A)
 
     # Performs permutation on B vector and
-    # foward substitution
+    # forward substitution
     for i in range(n):
         x[i] = B[P[i]]
         for k in range(i):
