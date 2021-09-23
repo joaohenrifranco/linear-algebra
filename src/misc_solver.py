@@ -47,7 +47,7 @@ def main():
         elif icod == 4:
             dX = input_dict['dX']
             constants = input_dict['constants']
-            output_dict['extrapolation'] = derivative_richard_ext.solve(
+            output_dict['derivative'] = derivative_richard_ext.solve(
                 dX[0], dX[1], constants)
 
         else:
