@@ -4,6 +4,6 @@
   "b": 1,
   "n": 6,
   "constants": [2,3,-5,2],
-  "method": "gauss_legendre",
+  "method": "polynomial",
   "tolm": 0.001
 }
