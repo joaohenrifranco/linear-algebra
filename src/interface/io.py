@@ -1,11 +1,8 @@
 import os
-from datetime import datetime
 import numpy as np
 import json
 
 join = ''.join
-
-
 
 
 class NumpyDecoder(json.JSONEncoder):
@@ -21,16 +18,9 @@ class NumpyDecoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
+
 class FileManager:
     def __init__(self, input_file_path, output_file_path):
-        # Old method
-        # self.created_time = datetime.now().strftime("%H%M%S")
-        # self.current_dir_path = os.path.dirname(os.path.abspath(main_file))
-        # self.input_filename = 'input.json'
-        # self.output_filename = f'output_{self.created_time}.json'
-        # self.input_file_path = os.path.join(self.current_dir_path, self.input_filename)
-        # self.output_file_path = os.path.join(self.current_dir_path, self.output_filename)
-        
         self.input_file_path = input_file_path
         self.output_file_path = output_file_path
 
