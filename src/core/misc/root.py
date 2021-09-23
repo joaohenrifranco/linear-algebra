@@ -1,15 +1,6 @@
 from common import f, f_derivative
 
 
-def root(a, b, constants, tol, method):
-    if method == 'newton':
-        return newton(a, b, constants, tol)
-    elif method == 'bissection':
-        return bissection(a, b, constants, tol)
-    else:
-        raise Exception('Invalid method name. Choose: bissection or newton.')
-
-
 def bissection(a, b, constants, tol):
     while(abs(b-a) > tol):
         x = (a+b) / 2
@@ -32,3 +23,11 @@ def newton(a, b, constants, tol):
         x0 = x
 
     raise Exception('Conversion not reached.')
+
+def root(a, b, constants, tol, method):
+    if method == 'newton':
+        return newton(a, b, constants, tol)
+    elif method == 'bissection':
+        return bissection(a, b, constants, tol)
+    else:
+        raise Exception('Invalid method name. Choose: bissection or newton.')
