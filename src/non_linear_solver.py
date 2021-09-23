@@ -18,7 +18,7 @@ def run():
     X0 = [1, 0, 0]
 
     output_dict = {
-        "consts": {max_iter, X0},
+        "consts": {"max_iter": max_iter, "X0": X0},
         "inputs": input_dict,
     }
 
