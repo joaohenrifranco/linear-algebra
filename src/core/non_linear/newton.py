@@ -1,17 +1,17 @@
-def solve(F, dF, x0, tol, n_iter):
-    xn = x0
+import numpy as np
+from common import j, f
 
-    for n in range(0, n_iter):
-        fxn = F(xn)
 
-        if abs(fxn) < tol:
-            return xn
-
-        dfxn = dF(xn)
-
-        if dfxn == 0:
-            raise Exception("Derivative is zero")
-
-        xn = xn - fxn/dfxn
-
-    raise Exception("Maximum iterations reached")
+def solve(X0, theta, max_iter, tol):
+    for _ in range(max_iter):
+        J = j(X0)
+        F = f(X0, theta)
+        
+        dX = -1 * np.linalg.inv(J) @ F
+        X0 = X0 + dX
+        
+        tolk = np.linalg.norm(dX) / np.linalg.norm(X0)        
+        if tolk <= tol:
+            return X0
+    
+    raise Exception('Did not converge')
