@@ -1,5 +1,5 @@
 import numpy as np
-from common import j, f
+from .common import j, f
 
 
 def solve(X0, teta, max_iter, tolm):
