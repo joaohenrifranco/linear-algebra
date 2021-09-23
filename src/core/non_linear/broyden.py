@@ -2,16 +2,16 @@ import numpy as np
 from common import j, f
 
 
-def solve(X0, theta, max_iter, tol):
+def solve(X0, teta, max_iter, tol):
     X0 = np.array(X0)
     B0 = j(X0)
 
     for _ in range(max_iter):
         J = B0
-        dX = -1 * np.linalg.inv(J) @ f(X0, theta)
+        dX = -1 * np.linalg.inv(J) @ f(X0, teta)
 
         X = X0 + dX
-        Y = f(X, theta) - f(X0, theta)
+        Y = f(X, teta) - f(X0, teta)
 
         tolk = np.linalg.norm(dX)/np.linalg.norm(X)
         if tolk <= tol:

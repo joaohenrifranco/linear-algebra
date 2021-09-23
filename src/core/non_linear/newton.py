@@ -2,10 +2,10 @@ import numpy as np
 from common import j, f
 
 
-def solve(X0, theta, max_iter, tol):
+def solve(X0, teta, max_iter, tol):
     for _ in range(max_iter):
         J = j(X0)
-        F = f(X0, theta)
+        F = f(X0, teta)
         
         dX = -1 * np.linalg.inv(J) @ F
         X0 = X0 + dX
