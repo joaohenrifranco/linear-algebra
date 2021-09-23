@@ -19,7 +19,7 @@ def run():
 
     output_dict = {
         "consts": {max_iter, X0},
-        "inputs": {icod, tolm, teta}
+        "inputs": input_dict,
     }
 
     try:
