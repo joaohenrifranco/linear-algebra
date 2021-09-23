@@ -1,9 +1,8 @@
 {
-  "icod": 2,
+  "icod": 1,
   "a": -1,
   "b": 1,
-  "n": 6,
   "constants": [2,3,-5,2],
-  "method": "gauss",
+  "method": "newton",
   "tolm": 0.001
 }
