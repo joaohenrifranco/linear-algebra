@@ -2,7 +2,7 @@ import numpy as np
 from common import j, f
 
 
-def solve(X0, teta, max_iter, tol):
+def solve(X0, teta, max_iter, tolm):
     for _ in range(max_iter):
         J = j(X0)
         F = f(X0, teta)
@@ -11,7 +11,7 @@ def solve(X0, teta, max_iter, tol):
         X0 = X0 + dX
         
         tolk = np.linalg.norm(dX) / np.linalg.norm(X0)        
-        if tolk <= tol:
+        if tolk <= tolm:
             return X0
     
     raise Exception('Did not converge')
