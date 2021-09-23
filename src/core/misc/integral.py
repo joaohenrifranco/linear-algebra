@@ -38,7 +38,7 @@ def polynomial(n):
     return (np.linalg.inv(A) @ B, x)
 
 
-def integrate(a, b, n, c, method):
+def solve(a, b, n, c, method):
     if n > 10:
         raise Exception('Chosen value must not be grater than 10.')
 

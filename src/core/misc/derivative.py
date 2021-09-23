@@ -1,7 +1,7 @@
 from common import f
 
 
-def derivative(a, dX, c, method='foward'):
+def solve(a, dX, c, method='foward'):
     if method == 'foward':
         return (f(a + dX, c) - f(a, c))/dX
 

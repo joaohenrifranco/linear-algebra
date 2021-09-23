@@ -24,7 +24,7 @@ def newton(a, b, constants, tol):
 
     raise Exception('Conversion not reached.')
 
-def root(a, b, constants, tol, method):
+def solve(a, b, constants, tol, method):
     if method == 'newton':
         return newton(a, b, constants, tol)
     elif method == 'bissection':
