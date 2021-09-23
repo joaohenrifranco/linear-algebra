@@ -1,4 +1,4 @@
-from common import f
+from .common import f
 
 
 def solve(a, dX, c, method='forward'):

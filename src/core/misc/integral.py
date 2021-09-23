@@ -1,5 +1,5 @@
 import numpy as np
-from common import f
+from .common import f
 
 
 def gauss_legendre(n):

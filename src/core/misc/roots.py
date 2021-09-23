@@ -1,4 +1,4 @@
-from common import f, f_derivative
+from .common import f, f_derivative
 
 
 def bissection(a, b, constants, tolm):
