@@ -1,0 +1,8 @@
+{
+  "icod": 1,
+  "a": -1,
+  "b": 1,
+  "constants": [2,3,-5,2],
+  "method": "newton",
+  "tolm": 0.001
+}

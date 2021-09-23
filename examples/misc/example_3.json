@@ -1,0 +1,7 @@
+{
+  "icod": 3,
+  "a": 1,
+  "dX": 0.1,
+  "constants": [2,3,-5,2],
+  "method": "foward"
+}
